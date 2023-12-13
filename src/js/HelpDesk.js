@@ -24,7 +24,6 @@ export default class HelpDesk {
     const data = await this.ticketService.list();
 
     this.ticketList = Array.from(data);
-    console.log(this.ticketList);
   }
 
   async deleteTicket(id) {
@@ -57,7 +56,7 @@ export default class HelpDesk {
   createTicketList() {
     if (this.ticketList.length !== 0 && this.ticketList !== undefined) {
       this.ticketList.forEach((item) => {
-        const list = document.querySelector(".desk__list");
+        const list = this.element.querySelector(".desk__list");
 
         const ticketElement = new TicketElement(list, item);
         ticketElement.createElement();
@@ -79,7 +78,7 @@ export default class HelpDesk {
   }
 
   addTicketModalEventListener() {
-    const addTicketModalBtn = document.querySelector(".desk__add");
+    const addTicketModalBtn = this.element.querySelector(".desk__add");
 
     addTicketModalBtn.addEventListener("click", () => {
       const addTicketModal = new Modal("add", true);
@@ -238,7 +237,7 @@ export default class HelpDesk {
   }
 
   async createNewTicket(modal) {
-    const list = document.querySelector(".desk__list");
+    const list = this.element.querySelector(".desk__list");
     const newData = Date.now();
     const data = {
       id: undefined,
@@ -292,11 +291,11 @@ export default class HelpDesk {
   }
 
   checkTicketsLength() {
-    const list = document.querySelector(".desk__list");
+    const list = this.element.querySelector(".desk__list");
 
-    if (document.querySelectorAll(".desk__item").length === 0) {
-      if (document.querySelector(".no-tickets-text")) {
-        document.querySelector(".no-tickets-text").remove();
+    if (this.element.querySelectorAll(".desk__item").length === 0) {
+      if (this.element.querySelector(".no-tickets-text")) {
+        this.element.querySelector(".no-tickets-text").remove();
       }
 
       const text = document.createElement("p");
@@ -304,25 +303,25 @@ export default class HelpDesk {
         'У вас нет тикетов. Вы можете создать один, нажав на кнопку "Добавить тикет".';
       text.classList.add("no-tickets-text");
 
-      document.querySelector(".desk__list-wrapper").append(text);
-      document.querySelector(".desk__list-wrapper").style.justifyContent =
+      this.element.querySelector(".desk__list-wrapper").append(text);
+      this.element.querySelector(".desk__list-wrapper").style.justifyContent =
         "center";
     }
 
-    if (document.querySelectorAll(".desk__item").length !== 0) {
-      document.querySelector(".desk__list-wrapper").removeAttribute("style");
+    if (this.element.querySelectorAll(".desk__item").length !== 0) {
+      this.element.querySelector(".desk__list-wrapper").removeAttribute("style");
     }
 
     if (
-      document.querySelectorAll(".desk__item").length !== 0 &&
-      document.querySelector(".no-tickets-text")
+      this.element.querySelectorAll(".desk__item").length !== 0 &&
+      this.element.querySelector(".no-tickets-text")
     ) {
-      document.querySelector(".no-tickets-text").remove();
+      this.element.querySelector(".no-tickets-text").remove();
     }
 
     if (
-      document.querySelectorAll(".desk__item").length <= 2 &&
-      document.querySelectorAll(".desk__item").length > 0
+      this.element.querySelectorAll(".desk__item").length <= 2 &&
+      this.element.querySelectorAll(".desk__item").length > 0
     ) {
       list.lastChild.classList.add("ticket_second");
     }

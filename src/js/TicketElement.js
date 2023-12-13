@@ -104,7 +104,6 @@ export default class TicketElement {
   expandTicketEventListener(id) {
     id.addEventListener("click", (e) => {
       let target = e.target;
-      const list = document.querySelector(".desk__list");
 
       if (!target.closest(".btn")) {
         id.querySelector(".ticket__desc-wrapper").classList.toggle(
@@ -112,11 +111,11 @@ export default class TicketElement {
         );
       }
 
-      if (document.querySelectorAll(".desk__item").length === 2) {
-        if (list.lastChild.classList.contains("ticket_second")) {
-          list.lastChild.classList.remove("ticket_second");
+      if (this.list.querySelectorAll(".desk__item").length === 2) {
+        if (this.list.lastChild.classList.contains("ticket_second")) {
+          this.list.lastChild.classList.remove("ticket_second");
         } else {
-          list.lastChild.classList.add("ticket_second");
+          this.list.lastChild.classList.add("ticket_second");
         }
       }
     });
