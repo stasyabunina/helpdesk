@@ -59,6 +59,10 @@ body {
   background-color: white;
 }
 
+.desk__list-wrapper--centered {
+  justify-content: center;
+}
+
 .no-tickets-text {
   max-width: 450px;
   margin: 0;

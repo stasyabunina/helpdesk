@@ -304,12 +304,11 @@ export default class HelpDesk {
       text.classList.add("no-tickets-text");
 
       this.element.querySelector(".desk__list-wrapper").append(text);
-      this.element.querySelector(".desk__list-wrapper").style.justifyContent =
-        "center";
+      this.element.querySelector(".desk__list-wrapper").classList.add('desk__list-wrapper--centered');
     }
 
     if (this.element.querySelectorAll(".desk__item").length !== 0) {
-      this.element.querySelector(".desk__list-wrapper").removeAttribute("style");
+      this.element.querySelector(".desk__list-wrapper").classList.remove('desk__list-wrapper--centered');
     }
 
     if (
